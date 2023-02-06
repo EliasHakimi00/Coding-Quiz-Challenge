@@ -20,10 +20,14 @@ const answer12 = document.getElementById("choice12");
 const submitButton = document.getElementById("submit");
 const initialsInput = document.getElementById("initials");
 const scoresList = document.getElementById("scores-list");
-
 const highScoresButton = document.getElementById("highScoresButton");
+
 highScoresButton.addEventListener("click", function() {
   startscreen.style.display = "none";
+  quizQuestion.style.display = "none";
+  quizQuestion2.style.display = "none";
+  quizQuestion3.style.display = "none";
+  quizResult.style.display = "none";
   highScores.style.display = "block";
 });
 
@@ -168,6 +172,7 @@ playAgainButton.addEventListener("click", function() {
   console.log("Timer reset to 30 seconds");
 });
 
+// Timer function which also redirects quiz to the quizResult page if time runs out
 function startTimer() {
   intervalId = setInterval(function() {
     count--;
@@ -176,6 +181,10 @@ function startTimer() {
     if (count === 0) {
       clearInterval(intervalId);
       alert("Time is up!");
+      quizQuestion.style.display = "none";
+      quizQuestion2.style.display = "none";
+      quizQuestion3.style.display = "none";
+      quizResult.style.display = "block";
     }
   }, 1000);
 }
@@ -187,6 +196,16 @@ function stopTimer() {
   clearInterval(intervalId);
 }
 
+// Stop timer when last question is answered
+answer9.addEventListener("click", function(){
+    stopTimer()
+})
+answer10.addEventListener("click", function(){
+    stopTimer()
+})
 answer11.addEventListener("click", function(){
+    stopTimer()
+})
+answer12.addEventListener("click", function(){
     stopTimer()
 })
