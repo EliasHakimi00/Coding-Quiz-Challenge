@@ -76,3 +76,13 @@ playAgainButton.addEventListener("click", function() {
   startscreen.style.display = "block";
 });
 highScores.appendChild(playAgainButton);
+
+// Clear high scores button
+const clearScoresButton = document.getElementById("clearScores");
+clearScoresButton.addEventListener("click", function() {
+    highScores.style.display = "none";
+    startscreen.style.display = "block";
+    localStorage.removeItem("scoreEntries");
+    scoresList.innerHTML = "";
+});
+highScores.appendChild(clearScoresButton);
