@@ -53,27 +53,27 @@ answer4.addEventListener("click", function() {
   });
 
 submitButton.addEventListener("click", function(event) {
-  event.preventDefault();
-  const initials = initialsInput.value;
-  const scoreEntry = initials + ": " + score;
-
-  // create a list item to display the score and initials
-  const listItem = document.createElement("li");
-  listItem.textContent = scoreEntry;
-  scoresList.appendChild(listItem);
-
-  // store the score in local storage
-  localStorage.setItem("scoreEntry", scoreEntry);
-
-  quizResult.style.display = "none";
-  highScores.style.display = "block";
+    event.preventDefault();
+    const initials = initialsInput.value;
+    const scoreEntry = initials + ": " + score;
+  
+// create a list item to display the score and initials
+const listItem = document.createElement("li");
+listItem.textContent = scoreEntry;
+scoresList.appendChild(listItem);
+  
+// store the score in local storage
+localStorage.setItem("scoreEntries", JSON.stringify([...JSON.parse(localStorage.getItem("scoreEntries") || "[]"), scoreEntry]));
+  
+quizResult.style.display = "none";
+highScores.style.display = "block";
 });
-
+  
 window.onload = function() {
-  const scoreEntry = localStorage.getItem("scoreEntry");
-  if (scoreEntry) {
+const scoreEntries = JSON.parse(localStorage.getItem("scoreEntries") || "[]").sort((a, b) => parseInt(b.split(":")[1]) - parseInt(a.split(":")[1]));
+scoreEntries.forEach(scoreEntry => {
     const listItem = document.createElement("li");
     listItem.textContent = scoreEntry;
     scoresList.appendChild(listItem);
-  }
+    });
 };
