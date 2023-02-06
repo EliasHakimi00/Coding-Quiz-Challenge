@@ -21,6 +21,9 @@ const submitButton = document.getElementById("submit");
 const initialsInput = document.getElementById("initials");
 const scoresList = document.getElementById("scores-list");
 const highScoresButton = document.getElementById("highScoresButton");
+var correctAnswerSound = new Audio("./starter/assets/sfx/correct.wav");
+var incorrectAnswerSound = new Audio("./starter/assets/sfx/incorrect.wav");
+
 
 highScoresButton.addEventListener("click", function() {
   startscreen.style.display = "none";
@@ -37,61 +40,64 @@ startButton.addEventListener("click", function() {
   startscreen.style.display = "none";
   quizQuestion.style.display = "block";
   highScores.style.display = "none";
-  
 });
-
-function stopTimer() {
-    clearInterval();
-  }
-
 
 answer1.addEventListener("click", function() {
   score = 1;
   quizQuestion.style.display = "none";
   quizQuestion2.style.display = "block";
+  correctAnswerSound.play();
 });
 answer2.addEventListener("click", function() {
   score = 0;
+  incorrectAnswerSound.play();
   quizQuestion.style.display = "none";
   quizQuestion2.style.display = "block";
 });
 answer3.addEventListener("click", function() {
   score = 0;
+  incorrectAnswerSound.play();
   quizQuestion.style.display = "none";
   quizQuestion2.style.display = "block";
 });
 answer4.addEventListener("click", function() {
   score = 0;
+  incorrectAnswerSound.play();
   quizQuestion.style.display = "none";
   quizQuestion2.style.display = "block";
 });
 
 answer5.addEventListener("click", function() {
     score ++;
+    correctAnswerSound.play();
     quizQuestion.style.display = "none";
     quizQuestion2.style.display = "none";
     quizQuestion3.style.display = "block";
 });
 answer6.addEventListener("click", function() {
     score != 2;
+    incorrectAnswerSound.play();
     quizQuestion.style.display = "none";
     quizQuestion2.style.display = "none";
     quizQuestion3.style.display = "block";
 });
 answer7.addEventListener("click", function() {
     score != 2;
+    incorrectAnswerSound.play();
     quizQuestion.style.display = "none";
     quizQuestion2.style.display = "none";
     quizQuestion3.style.display = "block";
 });
 answer8.addEventListener("click", function() {
     score != 2;
+    incorrectAnswerSound.play();
     quizQuestion.style.display = "none";
     quizQuestion2.style.display = "none";
     quizQuestion3.style.display = "block";
 });
 answer9.addEventListener("click", function() {
     score != 3;
+    correctAnswerSound.play();
     quizQuestion.style.display = "none";
     quizQuestion2.style.display = "none";
     quizQuestion3.style.display = "none";
@@ -100,6 +106,7 @@ answer9.addEventListener("click", function() {
 });
 answer10.addEventListener("click", function() {
     score ++;
+    incorrectAnswerSound.play();
     quizQuestion.style.display = "none";
     quizQuestion2.style.display = "none";
     quizQuestion3.style.display = "none";
@@ -108,6 +115,7 @@ answer10.addEventListener("click", function() {
 });
 answer11.addEventListener("click", function() {
     score != 3;
+    incorrectAnswerSound.play();
     quizQuestion.style.display = "none";
     quizQuestion2.style.display = "none";
     quizQuestion3.style.display = "none";
@@ -116,6 +124,7 @@ answer11.addEventListener("click", function() {
 });
 answer12.addEventListener("click", function() {
     score != 3;
+    incorrectAnswerSound.play();
     quizQuestion.style.display = "none";
     quizQuestion2.style.display = "none";
     quizQuestion3.style.display = "none";
@@ -180,12 +189,42 @@ function startTimer() {
     console.log(count);
     if (count === 0) {
       clearInterval(intervalId);
+      incorrectAnswerSound.play();
       alert("Time is up!");
-      quizQuestion.style.display = "none";
+      startscreen.style.display = "none";
+      quizQuestion.style.display = "none";  
       quizQuestion2.style.display = "none";
       quizQuestion3.style.display = "none";
       quizResult.style.display = "block";
     }
+    // Deduct time if incorrect option is chosen 
+    answer2.addEventListener("click", function() {
+        count -= 1;
+      });
+      answer3.addEventListener("click", function() {
+        count -= 1;
+      });
+      answer4.addEventListener("click", function() {
+        count -= 1;
+      });
+      answer6.addEventListener("click", function() {
+        count -= 1;
+      });
+      answer7.addEventListener("click", function() {
+        count -= 1;
+      });
+      answer8.addEventListener("click", function() {
+        count -= 1;
+      });
+      answer9.addEventListener("click", function() {
+        count -= 1;
+      });
+      answer11.addEventListener("click", function() {
+        count -= 1;
+      });
+      answer12.addEventListener("click", function() {
+        count -= 1;
+    });
   }, 1000);
 }
 document.getElementById("start").addEventListener("click", function() {
