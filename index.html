@@ -10,9 +10,10 @@
   </head>
    
   <body>
-    <div class="scores"><a href="./starter/highscores.html">View Highscores</a></div>
-
     <div class="timer">Time: <span id="time">60</span></div>
+    <button id="highScoresButton">High Scores</button>
+    <button id="playAgain">Play Again</button>
+    <button id="playAgain">Clear Scores</button>
 
     <div class="wrapper">
       <div id="startscreen" class="start">
@@ -35,16 +36,6 @@
         </div>
       </div>
 
-      <!-- <div id="quizPage" style="display: none;">
-        <h1 id="question">What is Javascript?</h1>
-        <div id="choices">
-          <button class="answerBtn" id="choice1">JavaScript is a scripting language used to make the website interactive</button>
-          <button class="answerBtn" id="choice2">JavaScript is an assembly language used to make the website interactive</button>
-          <button class="answerBtn" id="choice3">JavaScript is a compiled language used to make the website interactive</button>
-          <button class="answerBtn" id="choice4">None of the mentioned</button>
-        </div>
-      </div> -->
-
       <div class="high-scores" id="high-scores" style="display:none;">
         <h1>High Scores</h1>
         <ul id="scores-list"></ul>
@@ -59,7 +50,6 @@
         </p>
       </div>
 
-      <div id="feedback" class="feedback hide"></div>
     </div>
 
     <script src="./starter/assets/js/logic.js"></script>

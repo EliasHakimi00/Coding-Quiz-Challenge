@@ -1,4 +1,4 @@
-const startscreen = document.getElementById("startscreen")
+const startscreen = document.getElementById("startscreen");
 const startButton = document.getElementById("start");
 const quizQuestion = document.getElementById("quizPage");
 const highScores = document.getElementById("high-scores");
@@ -11,69 +11,68 @@ const submitButton = document.getElementById("submit");
 const initialsInput = document.getElementById("initials");
 const scoresList = document.getElementById("scores-list");
 
+const highScoresButton = document.getElementById("highScoresButton");
+highScoresButton.addEventListener("click", function() {
+  startscreen.style.display = "none";
+  highScores.style.display = "block";
+});
+
 let score = 0;
 
-// startButton.addEventListener("click", function() {
-//   quizQuestion.style.display = "block";
-//   highScores.style.display = "none";
-//   score = 0;
-// });
-
 startButton.addEventListener("click", function() {
-    startscreen.style.display = "none";
-    quizQuestion.style.display = "block";
-  });
+  startscreen.style.display = "none";
+  quizQuestion.style.display = "block";
+  highScores.style.display = "none";
+});
 
 answer1.addEventListener("click", function() {
   score = 1;
   quizQuestion.style.display = "none";
   quizResult.style.display = "block";
-
 });
-
 answer2.addEventListener("click", function() {
   score = 0;
   quizQuestion.style.display = "none";
   quizResult.style.display = "block";
-
 });
-
 answer3.addEventListener("click", function() {
   score = 0;
   quizQuestion.style.display = "none";
   quizResult.style.display = "block";
-
 });
-
 answer4.addEventListener("click", function() {
-    score = 0;
-    quizQuestion.style.display = "none";
-    quizResult.style.display = "block";
-
-  });
-
-submitButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    const initials = initialsInput.value;
-    const scoreEntry = initials + ": " + score;
-  
-// create a list item to display the score and initials
-const listItem = document.createElement("li");
-listItem.textContent = scoreEntry;
-scoresList.appendChild(listItem);
-  
-// store the score in local storage
-localStorage.setItem("scoreEntries", JSON.stringify([...JSON.parse(localStorage.getItem("scoreEntries") || "[]"), scoreEntry]));
-  
-quizResult.style.display = "none";
-highScores.style.display = "block";
+  score = 0;
+  quizQuestion.style.display = "none";
+  quizResult.style.display = "block";
 });
-  
-window.onload = function() {
-const scoreEntries = JSON.parse(localStorage.getItem("scoreEntries") || "[]").sort((a, b) => parseInt(b.split(":")[1]) - parseInt(a.split(":")[1]));
-scoreEntries.forEach(scoreEntry => {
-    const listItem = document.createElement("li");
-    listItem.textContent = scoreEntry;
+
+const submitScoreButton = document.getElementById("submit");
+submitScoreButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  let initials = initialsInput.value;
+  let scoreEntry = initials + ": " + score;
+
+  // add the new score entry to the existing score entries in local storage
+  let scoreEntries = JSON.parse(localStorage.getItem("scoreEntries") || "[]");
+  scoreEntries.push(scoreEntry);
+  localStorage.setItem("scoreEntries", JSON.stringify(scoreEntries));
+
+  quizResult.style.display = "none";
+  highScores.style.display = "block";
+
+  // display the score entries on the high scores page
+  scoresList.innerHTML = ""; // clear the high scores list
+  scoreEntries.forEach(function(entry) {
+    let listItem = document.createElement("li");
+    listItem.textContent = entry;
     scoresList.appendChild(listItem);
-    });
-};
+  });
+});
+
+// Play again button added
+const playAgainButton = document.getElementById("playAgain");
+playAgainButton.addEventListener("click", function() {
+  highScores.style.display = "none";
+  startscreen.style.display = "block";
+});
+highScores.appendChild(playAgainButton);
