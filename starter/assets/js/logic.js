@@ -1,12 +1,22 @@
 const startscreen = document.getElementById("startscreen");
 const startButton = document.getElementById("start");
 const quizQuestion = document.getElementById("quizPage");
+const quizQuestion2 = document.getElementById("quizPage2");
+const quizQuestion3 = document.getElementById("quizPage3");
 const highScores = document.getElementById("high-scores");
 const quizResult = document.getElementById("end-screen");
 const answer1 = document.getElementById("choice1");
 const answer2 = document.getElementById("choice2");
 const answer3 = document.getElementById("choice3");
 const answer4 = document.getElementById("choice4");
+const answer5 = document.getElementById("choice5");
+const answer6 = document.getElementById("choice6");
+const answer7 = document.getElementById("choice7");
+const answer8 = document.getElementById("choice8");
+const answer9 = document.getElementById("choice9");
+const answer10 = document.getElementById("choice10");
+const answer11 = document.getElementById("choice11");
+const answer12 = document.getElementById("choice12");
 const submitButton = document.getElementById("submit");
 const initialsInput = document.getElementById("initials");
 const scoresList = document.getElementById("scores-list");
@@ -23,27 +33,90 @@ startButton.addEventListener("click", function() {
   startscreen.style.display = "none";
   quizQuestion.style.display = "block";
   highScores.style.display = "none";
+  
 });
+
+function stopTimer() {
+    clearInterval();
+  }
+
 
 answer1.addEventListener("click", function() {
   score = 1;
   quizQuestion.style.display = "none";
-  quizResult.style.display = "block";
+  quizQuestion2.style.display = "block";
 });
 answer2.addEventListener("click", function() {
   score = 0;
   quizQuestion.style.display = "none";
-  quizResult.style.display = "block";
+  quizQuestion2.style.display = "block";
 });
 answer3.addEventListener("click", function() {
   score = 0;
   quizQuestion.style.display = "none";
-  quizResult.style.display = "block";
+  quizQuestion2.style.display = "block";
 });
 answer4.addEventListener("click", function() {
   score = 0;
   quizQuestion.style.display = "none";
-  quizResult.style.display = "block";
+  quizQuestion2.style.display = "block";
+});
+
+answer5.addEventListener("click", function() {
+    score ++;
+    quizQuestion.style.display = "none";
+    quizQuestion2.style.display = "none";
+    quizQuestion3.style.display = "block";
+});
+answer6.addEventListener("click", function() {
+    score != 2;
+    quizQuestion.style.display = "none";
+    quizQuestion2.style.display = "none";
+    quizQuestion3.style.display = "block";
+});
+answer7.addEventListener("click", function() {
+    score != 2;
+    quizQuestion.style.display = "none";
+    quizQuestion2.style.display = "none";
+    quizQuestion3.style.display = "block";
+});
+answer8.addEventListener("click", function() {
+    score != 2;
+    quizQuestion.style.display = "none";
+    quizQuestion2.style.display = "none";
+    quizQuestion3.style.display = "block";
+});
+answer9.addEventListener("click", function() {
+    score != 3;
+    quizQuestion.style.display = "none";
+    quizQuestion2.style.display = "none";
+    quizQuestion3.style.display = "none";
+    quizResult.style.display = "block";
+    stopTimer()
+});
+answer10.addEventListener("click", function() {
+    score ++;
+    quizQuestion.style.display = "none";
+    quizQuestion2.style.display = "none";
+    quizQuestion3.style.display = "none";
+    quizResult.style.display = "block";
+    stopTimer()
+});
+answer11.addEventListener("click", function() {
+    score != 3;
+    quizQuestion.style.display = "none";
+    quizQuestion2.style.display = "none";
+    quizQuestion3.style.display = "none";
+    quizResult.style.display = "block";
+    stopTimer()
+});
+answer12.addEventListener("click", function() {
+    score != 3;
+    quizQuestion.style.display = "none";
+    quizQuestion2.style.display = "none";
+    quizQuestion3.style.display = "none";
+    quizResult.style.display = "block";
+    stopTimer()
 });
 
 const submitScoreButton = document.getElementById("submit");
@@ -80,9 +153,40 @@ highScores.appendChild(playAgainButton);
 // Clear high scores button
 const clearScoresButton = document.getElementById("clearScores");
 clearScoresButton.addEventListener("click", function() {
-    highScores.style.display = "none";
-    startscreen.style.display = "block";
     localStorage.removeItem("scoreEntries");
     scoresList.innerHTML = "";
 });
 highScores.appendChild(clearScoresButton);
+
+// Define a variable for the timer
+let count = 30;
+let intervalId;
+
+// Restart the timer when the player clicks play again
+playAgainButton.addEventListener("click", function() {
+  count = 30;
+  console.log("Timer reset to 30 seconds");
+});
+
+function startTimer() {
+  intervalId = setInterval(function() {
+    count--;
+    document.getElementById("time").innerHTML = count + " seconds remaining";
+    console.log(count);
+    if (count === 0) {
+      clearInterval(intervalId);
+      alert("Time is up!");
+    }
+  }, 1000);
+}
+document.getElementById("start").addEventListener("click", function() {
+    startTimer();
+  });
+
+function stopTimer() {
+  clearInterval(intervalId);
+}
+
+answer11.addEventListener("click", function(){
+    stopTimer()
+})

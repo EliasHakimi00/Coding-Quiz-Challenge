@@ -10,7 +10,7 @@
   </head>
    
   <body>
-    <div class="timer">Time: <span id="time">60</span></div>
+    <div class="timer">Time: <span id="time">30</span></div>
     <button id="highScoresButton">High Scores</button>
     <button id="playAgain">Play Again</button>
     <button id="clearScores">Clear Scores</button>
@@ -37,6 +37,26 @@
         </div>
       </div>
 
+      <div class="quizPage2" id="quizPage2" style="display:none;">
+        <h1 id="question">Which of the following is correct about JavaScript?</h1>
+        <div id="choices">
+          <button class="answerBtn" id="choice5">JavaScript is an Object-Based language</button>
+          <button class="answerBtn" id="choice6">JavaScript is Assembly-language</button>
+          <button class="answerBtn" id="choice7">JavaScript is an Object-Oriented language</button>
+          <button class="answerBtn" id="choice8">JavaScript is a High-level language</button>
+      </div>
+    </div>
+
+    <div class="quizPage3" id="quizPage3" style="display:none;">
+      <h1 id="question">Among the given statements, which statement defines closures in JavaScript?</h1>
+      <div id="choices">
+        <button class="answerBtn" id="choice9">JavaScript is a function that is enclosed with references to its inner function scope</button>
+        <button class="answerBtn" id="choice10">JavaScript is a function that is enclosed with references to its lexical environment</button>
+        <button class="answerBtn" id="choice11">JavaScript is a function that is enclosed with the object to its inner function scope</button>
+        <button class="answerBtn" id="choice12">None of the mentioned</button>
+    </div>
+  </div>
+
       <div class="high-scores" id="high-scores" style="display:none;">
         <h1>High Scores</h1>
         <ul id="scores-list"></ul>
@@ -57,3 +77,4 @@
     <script src="./starter/assets/js/questions.js"></script>
   </body>
 </html>
+
